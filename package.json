@@ -1,0 +1,23 @@
+{
+    "name": "telegrambot",
+    "description": "Wrapper for interacting with the Telegram Bot API",
+    "version": "0.0.1",
+    "main": "./lib/telegrambot.js",
+    "keywords": [
+        "telegram",
+        "telegram bot",
+        "telegram bot api",
+        "bot",
+        "telegram api"
+    ],
+    "dependencies": {
+        "request": "*"
+    },
+    "devDependencies": {
+        "mocha": "*",
+        "nock": "*"
+    },
+    "scripts": {
+        "test": "node ./node_modules/mocha/bin/mocha"
+    }
+}
