@@ -16,6 +16,7 @@ All methods available on the API can be access using this library. The list of m
 
 ``` nodejs
 var TelegramBot = require('telegram-bot');
+var fs = require('fs');
 
 var api = new TelegramBot('<YOUR TOKEN HERE>');
 
@@ -25,6 +26,12 @@ api.invoke('getMe', {}, function (err, me) {
 });
 
 api.invoke('sendMessage', { chat_id: 1, text: 'my message' }, function (err, message) {
+    if (err) throw err;
+    console.log(message);
+});
+
+// Sending a photo or file (multipart)
+api.invoke('sendPhoto', { chat_id: 1, photo: fs.createReadStream(__dirname + '/test.jpg') }, function (err, message) {
     if (err) throw err;
     console.log(message);
 });

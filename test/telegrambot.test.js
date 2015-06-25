@@ -1,6 +1,6 @@
 var assert = require("assert");
 var nock = require('nock');
-var TelegramBot = require("./../lib/main.js");
+var TelegramBot = require("./../lib/telegrambot.js");
 
 describe('Telegram', function() {
 
