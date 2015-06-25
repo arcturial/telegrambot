@@ -12,7 +12,7 @@ npm install telegrambot
 
 All methods available on the API can be access using this library. The list of methods and expected results can be found in the [Bot API document](https://core.telegram.org/bots/api).
 
-# Usage
+## Usage
 
 ``` nodejs
 var TelegramBot = require('telegram-bot');
@@ -26,5 +26,5 @@ api.invoke('getMe', {}, function (err, me) {
 
 api.invoke('sendMessage', { chat_id: 1, text: 'my message' }, function (err, message) {
     if (err) throw err;
-    console.log(me);
+    console.log(message);
 });
