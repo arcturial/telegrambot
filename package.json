@@ -1,27 +1,27 @@
 {
-    "name": "telegrambot",
-    "description": "Wrapper for interacting with the Telegram Bot API",
-    "version": "0.0.2",
-    "repository" : {
-        "type" : "git",
-        "url" : "https://github.com/arcturial/telegrambot.git"
-    },
-    "main": "./lib/telegrambot.js",
-        "keywords": [
-        "telegram",
-        "telegram bot",
-        "telegram bot api",
-        "bot",
-        "telegram api"
-    ],
-    "dependencies": {
-        "request": "*"
-    },
-    "devDependencies": {
-        "mocha": "*",
-        "nock": "*"
-    },
-    "scripts": {
-        "test": "node ./node_modules/mocha/bin/mocha"
-    }
+  "name": "telegrambot",
+  "description": "Wrapper for interacting with the Telegram Bot API",
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arcturial/telegrambot.git"
+  },
+  "main": "./lib/telegrambot.js",
+  "keywords": [
+    "telegram",
+    "telegram bot",
+    "telegram bot api",
+    "bot",
+    "telegram api"
+  ],
+  "dependencies": {
+    "request": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "nock": "*"
+  },
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha"
+  }
 }
