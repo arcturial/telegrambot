@@ -17,7 +17,7 @@ All methods available on the API can be access using this library. The list of m
 ## Usage
 
 ``` nodejs
-var TelegramBot = require('telegram-bot');
+var TelegramBot = require('telegrambot');
 var fs = require('fs');
 
 var api = new TelegramBot('<YOUR TOKEN HERE>');
