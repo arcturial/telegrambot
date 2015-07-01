@@ -17,6 +17,32 @@ describe('Telegram', function() {
             func(new Error());
         });
 
+        it('should return an error if the request fails', function(done) {
+
+            var error = 'bomb!';
+
+            var callbackError = function (err) {
+                assert.ok(err);
+                assert.equal(err.message, error);
+                done();
+            };
+
+            var func = TelegramBot.unwrap(callbackError);
+            func(new Error(error), null, null);
+        });
+
+        it('should return an error if the request returns a bad HTTP status', function(done) {
+
+            var callbackError = function (err) {
+                assert.ok(err);
+                assert.equal(err.code, 500);
+                done();
+            };
+
+            var func = TelegramBot.unwrap(callbackError);
+            func(null, { statusCode: 500 }, null);
+        });
+
         it('should return an error if Telegram fails', function(done) {
 
             var error = { ok: false, error_code: 100, description: "fail" };
@@ -28,7 +54,7 @@ describe('Telegram', function() {
             };
 
             var func = TelegramBot.unwrap(callbackError);
-            func(null, null, error);
+            func(null, { statusCode: 200 }, error);
         });
 
         it('should return the unwrapped body if successful', function(done) {
@@ -42,7 +68,7 @@ describe('Telegram', function() {
             };
 
             var func = TelegramBot.unwrap(callback);
-            func(null, null, success);
+            func(null, { statusCode: 200 }, success);
         });
     });
 
