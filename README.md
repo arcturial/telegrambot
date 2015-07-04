@@ -14,7 +14,45 @@ npm install telegrambot
 
 All methods available on the API can be access using this library. The list of methods and expected results can be found in the [Bot API document](https://core.telegram.org/bots/api).
 
-## Usage
+The methods can be used like this:
+
+``` nodejs
+var TelegramBot = require('telegrambot');
+var fs = require('fs');
+
+var api = new TelegramBot('<YOUR TOKEN HERE>');
+
+api.getMe(function (err, me) { });
+
+api.sendMessage({ chat_id: 1, text: 'test' }, function (err, message) { });
+
+api.forwardMessage({ chat_id: 1, from_chat_id: 2, message_id: 1 } , function (err, message) { });
+
+api.sendPhoto({ chat_id: 1, photo: fs.createReadStream(__dirname + '/test.jpg') }, function (err, message) { });
+
+api.sendAudio({ chat_id: 1, audiio: fs.createReadStream(__dirname + '/audio.mp3') }, function (err, message) { });
+
+api.sendDocument({ chat_id: 1, document: fs.createReadStream(__dirname + '/file.txt') }, function (err, message) { });
+
+api.sendSticker({ chat_id: 1, sticker: fs.createReadStream(__dirname + '/sticker.jpg') }, function (err, message) { });
+
+api.sendVideo({ chat_id: 1, video: fs.createReadStream(__dirname + '/vid.mp4') }, function (err, message) { });
+
+api.sendLocation({ chat_id: 1, latitude: 0, longitude: 0 }, function (err, message) { });
+
+api.sendChatAction({ chat_id: 1, action: 'upload_photo' }, function (err, res) { });
+
+api.getUserProfilePhotos({ user_id: 0, offset: 0, limit: 10 }, function (err, photos) { });
+
+api.getUpdates({ offset: 0, limit: 10 }, function (err, updates) { });
+
+api.setWebhook({ url: 'http://mywebhook.com' }, function (err, res) { });
+
+```
+
+## Using 'invoke'
+
+The library contains an `invoke` call that can be used to call any API method even before it's been implemented as part of the library interface. All library calls wrap this call and serve mostly as a convenience.
 
 ``` nodejs
 var TelegramBot = require('telegrambot');
@@ -25,15 +63,4 @@ var api = new TelegramBot('<YOUR TOKEN HERE>');
 api.invoke('getMe', {}, function (err, me) {
     if (err) throw err;
     console.log(me);
-});
-
-api.invoke('sendMessage', { chat_id: 1, text: 'my message' }, function (err, message) {
-    if (err) throw err;
-    console.log(message);
-});
-
-// Sending a photo or file (multipart)
-api.invoke('sendPhoto', { chat_id: 1, photo: fs.createReadStream(__dirname + '/test.jpg') }, function (err, message) {
-    if (err) throw err;
-    console.log(message);
 });

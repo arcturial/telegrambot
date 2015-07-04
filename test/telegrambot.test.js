@@ -4,7 +4,7 @@ var TelegramBot = require("./../lib/telegrambot.js");
 
 describe('Telegram', function() {
 
-    describe('#unwrap()', function() {
+    describe('#unwrap', function() {
 
         it('should return an error if the request fails', function(done) {
 
@@ -72,7 +72,7 @@ describe('Telegram', function() {
         });
     });
 
-    describe('#request', function(done) {
+    describe('#request', function() {
 
         it('should invoke the correct endpoint request', function(done) {
 
@@ -86,7 +86,7 @@ describe('Telegram', function() {
         });
     });
 
-    describe('#invoke', function(done) {
+    describe('#invoke', function() {
 
         it('should call request with the correct parameters', function(done) {
 
@@ -102,6 +102,58 @@ describe('Telegram', function() {
             };
 
             bot.invoke('testMethod', { opt: true }, callback);
+        });
+    });
+
+    describe('#wrapperMethods', function() {
+
+        it('should call invoke with callback', function(done) {
+
+            var callback = function () {};
+            var bot = new TelegramBot(1234);
+
+            bot.invoke = function (method, opts, cb) {
+                assert.equal('getMe', method);
+                assert.deepEqual({}, opts);
+                assert.equal(callback, cb);
+                done();
+            };
+
+            bot.getMe(callback);
+        });
+
+        it('should call invoke with opts and callback', function() {
+
+            var methods = [
+                "sendMessage",
+                "forwardMessage",
+                "sendPhoto",
+                "sendAudio",
+                "sendDocument",
+                "sendSticker",
+                "sendVideo",
+                "sendLocation",
+                "sendChatAction",
+                "getUserProfilePhotos",
+                "getUpdates",
+                "setWebhook",
+            ];
+
+            var callback = function () {};
+            var options = { chat_id: 10 };
+            var bot = new TelegramBot(1234);
+
+            bot.invoke = function (method, opts, cb) {
+                assert.equal(methods[opts.index], method);
+                delete opts.index;
+                assert.deepEqual(options, opts);
+                assert.equal(callback, cb);
+            };
+
+            for (var key in methods) {
+                options.index = key;
+                bot[methods[key]](options, callback);
+            }
         });
     });
 });
