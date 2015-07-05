@@ -18,35 +18,54 @@ The methods can be used like this:
 
 ``` nodejs
 var TelegramBot = require('telegrambot');
+
+var api = new TelegramBot('<YOUR TOKEN HERE>');
+
+api.getMe(callback);
+
+api.sendMessage(opts, callback);
+
+api.forwardMessage(opts, callback);
+
+api.sendPhoto(opts, callback;
+
+api.sendAudio(opts, callback);
+
+api.sendDocument(opts, callback);
+
+api.sendSticker(opts, callback);
+
+api.sendVideo(opts, callback);
+
+api.sendLocation(opts, callback);
+
+api.sendChatAction(opts, callback);
+
+api.getUserProfilePhotos(opts, callback);
+
+api.getUpdates(opts, callback);
+
+api.setWebhook(opts, callback);
+
+```
+
+## Usage
+
+``` nodejs
+var TelegramBot = require('telegrambot');
 var fs = require('fs');
 
 var api = new TelegramBot('<YOUR TOKEN HERE>');
 
-api.getMe(function (err, me) { });
+api.sendMessage({ chat_id: 1, text: 'test' }, function (err, message) {
+    if (err) throw err;
+    console.log(message);
+});
 
-api.sendMessage({ chat_id: 1, text: 'test' }, function (err, message) { });
-
-api.forwardMessage({ chat_id: 1, from_chat_id: 2, message_id: 1 } , function (err, message) { });
-
-api.sendPhoto({ chat_id: 1, photo: fs.createReadStream(__dirname + '/test.jpg') }, function (err, message) { });
-
-api.sendAudio({ chat_id: 1, audiio: fs.createReadStream(__dirname + '/audio.mp3') }, function (err, message) { });
-
-api.sendDocument({ chat_id: 1, document: fs.createReadStream(__dirname + '/file.txt') }, function (err, message) { });
-
-api.sendSticker({ chat_id: 1, sticker: fs.createReadStream(__dirname + '/sticker.jpg') }, function (err, message) { });
-
-api.sendVideo({ chat_id: 1, video: fs.createReadStream(__dirname + '/vid.mp4') }, function (err, message) { });
-
-api.sendLocation({ chat_id: 1, latitude: 0, longitude: 0 }, function (err, message) { });
-
-api.sendChatAction({ chat_id: 1, action: 'upload_photo' }, function (err, res) { });
-
-api.getUserProfilePhotos({ user_id: 0, offset: 0, limit: 10 }, function (err, photos) { });
-
-api.getUpdates({ offset: 0, limit: 10 }, function (err, updates) { });
-
-api.setWebhook({ url: 'http://mywebhook.com' }, function (err, res) { });
+api.sendPhoto({ chat_id: 1, photo: fs.createReadStream(__dirname + '/test.jpg') }, function (err, message) {
+    if (err) throw err;
+    console.log(message);
+});
 
 ```
 
