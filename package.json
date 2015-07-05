@@ -1,7 +1,7 @@
 {
   "name": "telegrambot",
   "description": "Wrapper for interacting with the Telegram Bot API",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "repository": {
     "type": "git",
     "url": "https://github.com/arcturial/telegrambot.git"
