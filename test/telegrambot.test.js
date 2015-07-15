@@ -36,6 +36,7 @@ describe('Telegram', function() {
             var callbackError = function (err) {
                 assert.ok(err);
                 assert.equal(err.code, 500);
+                assert.equal(err.httpStatus, 500);
                 done();
             };
 
