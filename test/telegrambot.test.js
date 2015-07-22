@@ -5,7 +5,6 @@ var TelegramBot = require("./../lib/telegrambot.js");
 describe('Telegram', function() {
 
     describe('#unwrap', function() {
-
         it('should return an error if the request fails', function(done) {
 
             var callbackError = function (err) {
@@ -42,6 +41,19 @@ describe('Telegram', function() {
 
             var func = TelegramBot.unwrap(callbackError);
             func(null, { statusCode: 500 }, null);
+        });
+
+        it('should return an error if the request returns a bad HTTP status and body is populated', function(done) {
+
+            var callbackError = function (err) {
+                assert.ok(err);
+                assert.equal(err.code, 500);
+                assert.equal(err.httpStatus, 500);
+                done();
+            };
+
+            var func = TelegramBot.unwrap(callbackError);
+            func(null, { statusCode: 500 }, "some populated body string");
         });
 
         it('should return an error if Telegram fails', function(done) {
