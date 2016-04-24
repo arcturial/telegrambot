@@ -147,8 +147,17 @@ describe('Telegram', function() {
                 "sendVideo",
                 "sendLocation",
                 "sendChatAction",
+                "sendContact",
                 "getUserProfilePhotos",
+                "getFile",
+                "kickChatMember",
+                "unbanChatMember",
+                "answerCallbackQuery",
+                "editMessageText",
+                "editMessageCaption",
+                "editMessageReplyMarkup",
                 "getUpdates",
+                "answerInlineQuery",
                 "setWebhook",
             ];
 

@@ -14,7 +14,7 @@ npm install telegrambot
 
 All methods available on the API can be access using this library. The list of methods and expected results can be found in the [Bot API document](https://core.telegram.org/bots/api).
 
-The methods can be used like this:
+The methods can be used like this (wrappers):
 
 ``` nodejs
 var TelegramBot = require('telegrambot');
@@ -41,7 +41,25 @@ api.sendLocation(opts, callback);
 
 api.sendChatAction(opts, callback);
 
+api.sendContact(opts, callback);
+
 api.getUserProfilePhotos(opts, callback);
+
+api.getFile(opts, callback);
+
+api.kickChatMember(opts, callback);
+
+api.unbanChatMember(opts, callback);
+
+api.answerCallbackQuery(opts, callback);
+
+api.editMessageText(opts, callback);
+
+api.editMessageCaption(opts, callback);
+
+api.editMessageReplyMarkup(opts, callback);
+
+api.answerInlineQuery(opts, callback);
 
 api.getUpdates(opts, callback);
 
